@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>CORS/Cache POC</title>
+        <script>
+            async function cors_cache(){
+                url = location.hash.substr(1);
+                let response = await fetch(url, {cache: "force-cache", headers: {"Accept": "application/json, text/plain, */*", "Content-type": "application/json;charset=UTF-8"}});
+                let data = await response.json();
+                document.getElementById("data").value = JSON.stringify(data, null, 2);
+                return await data;
+            }
+        </script>
+    </head>
+    <body onload="cors_cache()">
+        <textarea id="data" rows="200" cols="200"></textarea><br/>
+    </body>
+</html>
